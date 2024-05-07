@@ -1,31 +1,39 @@
-interface UserData {
-    name?: string;
-    age?: number;
-}
+import {EventHandler} from "./EventHandler";
+import {UserProps} from "../types";
+import {DataPersistor} from "./DataPersister";
+import {Attributes} from "./Attributes";
 
-type Callback = () => void
+type Callback = () => void;
+
+const rootUrl = 'http://localhost:3000/users'
 
 export class User {
-    events: { [key:string]: Callback }[] = [{}]
-    constructor(private data: UserData) {}
-    get(attribute: string): number|string {
-        return this.data[attribute]
-    }
-    set(update: UserData): void {
-        Object.assign(this.data, update)
-    }
-    on(eventName: string, callback: Callback) {
-        const handlers: [] = this.events[eventName] || []
-        handlers.push(callback)
-        this.events[eventName] = handlers
-    }
-    trigger(eventName: string): void {
-        const handlers = this.events[eventName]
-        //console.log('handlers', handlers)
-        if (handlers === undefined || handlers.length === 0) {
-            return
-        }
+  events: EventHandler = new EventHandler()
+  persister: DataPersistor<UserProps> = new DataPersistor<UserProps>(rootUrl)
+  attributes: Attributes<UserProps>;
 
-        handlers.forEach(callback => callback())
-    }
+  constructor(private data: UserProps) {
+    this.attributes = new Attributes<UserProps>(data)
+  }
+  get on() {
+    return this.events.on
+  }
+  get trigger() {
+    return this.events.trigger
+  }
+  get fetch() {
+    return this.persister.fetch
+  }
+  get save() {
+    return this.persister.save
+  }
+  get get() {
+    return this.attributes.get
+  }
+  get set() {
+    return this.attributes.set
+  }
+  get getData(): UserProps {
+    return this.data
+  }
 }

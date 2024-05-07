@@ -1,38 +1,14 @@
-import {User} from './models/User'
+import {User} from './models/User';
 
-const user = new User({name: 'Herve', age:34})
-console.log(`User ${user.get('name')} was created and the age is ${user.get('age')}`)
+const user = new User({ name: 'Herve', age:45 })
 
-user.set({name:'Patrick'})
-console.log(`User has changed ${user.get('name')} was created and the age is ${user.get('age')}`)
-
-user.on('change', () => {
-    console.log('I am born');
+user.events.on('change', () => {
+    console.log('test')
 })
 
-user.on('change', () => {
-    console.log('I am young');
-})
+user.persister.fetch(1)
 
-user.on('change', () => {
-    console.log('I am old');
-})
+user.attributes.set({name: 'newname', age: 56})
+user.persister.save(user.getData)
 
-user.on('change', () => {
-    console.log('I am dead');
-})
-
-user.on('birthagain', () => {
-    console.log('I am dead in the paradise');
-})
-
-user.on('birthagain', () => {
-    console.log('I am back on earth');
-})
-
-user.on('birthagain', () => {
-    console.log('I am baby');
-})
-
-user.trigger('change')
-user.trigger('birthagain')
+console.log(user.attributes.get('name'))
