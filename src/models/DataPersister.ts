@@ -8,10 +8,10 @@ interface HasId {
 export class DataPersistor<T extends HasId> implements Persister<T>{
     constructor(private rootUrl: string) {
     }
-    fetch(id: number): AxiosPromise {
+    fetch = (id: number): AxiosPromise => {
         return axios.get(`${this.rootUrl}/${id}`)
     }
-    save(data: T): AxiosPromise {
+    save = (data: T): AxiosPromise => {
         const { id } = data
 
         if (id)
