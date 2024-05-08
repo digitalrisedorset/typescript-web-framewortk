@@ -1,9 +1,25 @@
 {
   "users": [
     {
-      "name": "myname",
-      "age": 20,
+      "name": "Herve",
+      "age": 45,
       "id": 1
+    }
+  ],
+  "blogpost": [
+    {
+      "title": "new title",
+      "content": "lorem ipsum",
+      "last_date_update": "2024-05-08T13:15:03.062Z",
+      "author": "me",
+      "id": 1
+    },
+    {
+      "title": "new title",
+      "content": "lorem ipsum",
+      "last_date_update": "2024-05-08T13:15:21.096Z",
+      "author": "me",
+      "id": 2
     }
   ]
 }

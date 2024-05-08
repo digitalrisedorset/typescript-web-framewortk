@@ -1,14 +1,25 @@
 import {User} from './models/User';
+import {BlogPost} from "./models/BlogPost";
+import {BlogPostProps} from "./types";
 
+// create a user in the API storage
 const user = new User({ name: 'Herve', age:45 })
+user.save()
 
-user.events.on('change', () => {
-    console.log('test')
-})
+user.fetch()
+console.log('user ' ,user.get('name'))
 
-user.persister.fetch(1)
+// create a blog post in the local storage
+const blogPost = new BlogPost({
+    title: 'best article',
+    content: 'lorem ipsum',
+    last_date_update: new Date(),
+    author: 'me'
+} as BlogPostProps)
 
-user.attributes.set({name: 'newname', age: 56})
-user.persister.save(user.getData)
+// update the blog post in the local storage
+blogPost.set({title: 'new title'})
+blogPost.save()
 
-console.log(user.attributes.get('name'))
+// read the blog post title
+console.log(blogPost.get('title'))

@@ -1,13 +1,9 @@
 import axios, { AxiosPromise } from "axios";
-import { Persister } from "../types";
+import {DataPersister} from "../types";
+import { HasId} from "../types";
 
-interface HasId {
-    id?: number
-}
-
-export class DataPersistor<T extends HasId> implements Persister<T>{
-    constructor(private rootUrl: string) {
-    }
+export class ApiPersister<T extends HasId> implements DataPersister<T> {
+    constructor(private rootUrl: string) {}
     fetch = (id: number): AxiosPromise => {
         return axios.get(`${this.rootUrl}/${id}`)
     }

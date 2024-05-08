@@ -1,6 +1,6 @@
-export type Callback = () => void;
+import {Callback, Events} from "../types";
 
-export class EventHandler {
+export class EventHandler implements Events {
     events: { [key: string]: Callback[] } = {};
 
     on = (eventName: string, callback: Callback): void => {
