@@ -4,7 +4,7 @@ import {Attributes} from "./Attributes";
 import {LocalStoragePersistor} from "./LocalStoragePersistor";
 import {ApiPersister} from "./ApiPersister";
 
-const rootUrl = 'http://localhost:3000/blogpost'
+export const rootUrl = 'http://localhost:3000/blogpost'
 
 export class BlogPost extends EntityHandler<BlogPostProps> {
     constructor(private data: BlogPostProps) {

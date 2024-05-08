@@ -3,8 +3,9 @@ import {EntityHandler} from "./EntityHandler";
 import {Attributes} from "./Attributes";
 import {ApiPersister} from "./ApiPersister";
 import {LocalStoragePersistor} from "./LocalStoragePersistor";
+import {Collection} from "./Collection";
 
-const rootUrl = 'http://localhost:3000/users'
+export const rootUrl = 'http://localhost:3000/users'
 
 export class User extends EntityHandler<UserProps> {
   constructor(private data: UserProps) {

@@ -1,6 +1,7 @@
 import {AxiosResponse} from "axios";
-import {DataPersister, EntityAttributes, Events, HasId} from "../types";
+import {DataPersister, EntityAttributes, Events, HasId, UserProps} from "../types";
 import {EventHandler} from "./EventHandler";
+import {Collection} from "./Collection";
 
 export class EntityHandler<T extends HasId> {
     protected events: Events
